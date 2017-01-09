@@ -8,5 +8,7 @@ wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
 apt-get update
 apt-get install -y newrelic-sysmond
 
+sleep 10
 nrsysmond-config --set license_key="$1"
+sleep 10
 /etc/init.d/newrelic-sysmond start
