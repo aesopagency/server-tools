@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MEM=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+SWAP=$((MEM/1024*4))M
+sudo fallocate -l $SWAP /swapfile
+sudo chmod 600 /swapfile
+ls -lh /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo swapon -s
+free -m
+echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
